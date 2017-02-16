@@ -1,6 +1,8 @@
 package com.study.leetcode;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import junit.framework.Assert;
 
@@ -16,6 +18,7 @@ import org.junit.Test;
  */
 public class Q3 {
 
+	// my answer
 	public static int lengthOfLongestSubstring(String s) {
 		if(null == s || s.length() == 0){
 			return 0;
@@ -36,11 +39,40 @@ public class Q3 {
         return maxLength;
     }
 	
+	// another answer
+	// 使用区间滑块，[i,j)
+	public static int lengthOfLongestSubstring1(String s){
+		int maxLength = 0;
+		int len = s.length();
+		Set<Character> set = new HashSet<Character>();
+		int start = 0;
+		int end = 0;
+		while(start < len && end < len){
+			if(!set.contains(s.charAt(end))){
+				set.add(s.charAt(end));
+				end++;
+				maxLength = Math.max(set.size(), end - start);
+			}else{
+				set.remove(s.charAt(start));
+				start++;
+			}
+		}
+		return maxLength;
+	}
+	
 	@Test
 	public void test() {
 		Assert.assertEquals(1, Q3.lengthOfLongestSubstring("aaaaa"));
 		Assert.assertEquals(4, Q3.lengthOfLongestSubstring("abcdabad"));
 		Assert.assertEquals(10, Q3.lengthOfLongestSubstring("d123456789"));
 		Assert.assertEquals(5, Q3.lengthOfLongestSubstring("asdiioasd"));
+	}
+	
+	@Test
+	public void test1() {
+		Assert.assertEquals(1, Q3.lengthOfLongestSubstring1("aaaaa"));
+		Assert.assertEquals(4, Q3.lengthOfLongestSubstring1("abcdabad"));
+		Assert.assertEquals(10, Q3.lengthOfLongestSubstring1("d123456789"));
+		Assert.assertEquals(5, Q3.lengthOfLongestSubstring1("asdiioasd"));
 	}
 }

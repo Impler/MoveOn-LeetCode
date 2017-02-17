@@ -1,8 +1,8 @@
 package com.study.leetcode;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Set;
+import java.util.List;
 
 import junit.framework.Assert;
 
@@ -44,16 +44,16 @@ public class Q3 {
 	public static int lengthOfLongestSubstring1(String s){
 		int maxLength = 0;
 		int len = s.length();
-		Set<Character> set = new HashSet<Character>();
+		List<Character> list = new ArrayList<Character>();
 		int start = 0;
 		int end = 0;
 		while(start < len && end < len){
-			if(!set.contains(s.charAt(end))){
-				set.add(s.charAt(end));
+			if(!list.contains(s.charAt(end))){
+				list.add(s.charAt(end));
 				end++;
-				maxLength = Math.max(set.size(), end - start);
+				maxLength = Math.max(maxLength, end - start);
 			}else{
-				set.remove(s.charAt(start));
+				list.remove((Character)s.charAt(start));
 				start++;
 			}
 		}

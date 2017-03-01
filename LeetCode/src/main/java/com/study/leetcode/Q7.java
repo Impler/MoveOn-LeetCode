@@ -87,8 +87,10 @@ public class Q7 {
 		while(x != 0){
 			last = x % 10;
 			result = result * 10 + last;
-			//todo
-			if(result % 10 != last || result / 10 )
+			// check integer overflow
+			if(result % 10 != last){
+				return 0;
+			}
 			x = x / 10;
 		}
 		return result;
@@ -105,6 +107,7 @@ public class Q7 {
 		Assert.assertEquals(0, reverseByStr(1000000003));
 		Assert.assertEquals(0, reverseByStr(1563847412));
 	}
+	
 	@Test
 	public void testByNum() {
 		Assert.assertEquals(0, reverseByNum(0));
@@ -114,6 +117,7 @@ public class Q7 {
 		Assert.assertEquals(0, reverseByNum(1000000003));
 		Assert.assertEquals(0, reverseByNum(1563847412));
 	}
+	
 	@Test
 	public void testByNum3() {
 		Assert.assertEquals(0, reverseByNum3(0));
@@ -123,5 +127,5 @@ public class Q7 {
 		Assert.assertEquals(0, reverseByNum3(1000000003));
 		Assert.assertEquals(0, reverseByNum(1563847412));
 	}
-
+	
 }

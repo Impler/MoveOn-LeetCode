@@ -26,12 +26,14 @@ public class Q6 {
 		}
 		int length =  s.length();
 		StringBuffer sb = new StringBuffer();
+		// regular expression
 		int step = 2 * numRows - 2;
 		for(int i = 0; i < numRows; i++){
 			for(int j = i; j < length; j += step){
 				sb.append(s.charAt(j));
 				// not the start and end
 				if(i > 0 && i < numRows - 1){
+					// middle regular expression
 					int next = j + 2 * (numRows - i) - 2;
 					if(next < length){
 						sb.append(s.charAt(next));
